@@ -1,14 +1,7 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "github.com/guil95/grpc-golang/pkg/grpc"
 
 func main() {
-	//grpc.RunGrpcServer()
-
-	a := strings.Repeat("aaa", 1)
-
-	fmt.Println(a)
+	grpc.RunGrpcServer()
 }
