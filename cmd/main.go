@@ -1,33 +1,14 @@
 package main
 
-import "github.com/guil95/grpc-golang/pkg/grpc"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
-	//client := clients.NewRickMortyClient()
-	//uc := domain.NewUseCase(client)
+	//grpc.RunGrpcServer()
 
-	//characters, err := uc.FindAllCharacters()
-	//if err != nil {
-	//	return
-	//}
-	//
-	//fmt.Println(characters)
+	a := strings.Repeat("aaa", 1)
 
-	//characterInfo, err := uc.GetCharacterInfo()
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//
-	//fmt.Println(characterInfo)
-
-	//characterByPage, err := uc.FindCharacterByPage(1)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//
-	//fmt.Println(characterByPage)
-
-	grpc.RunGrpcServer()
+	fmt.Println(a)
 }

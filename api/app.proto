@@ -8,14 +8,20 @@ import "google/protobuf/empty.proto";
 
 service RickMortyService {
   rpc ListAllCharacters(google.protobuf.Empty) returns (CharactersResponse);
-  rpc ListAllCharactersStream(google.protobuf.Empty) returns (stream CharactersResponse);
+  rpc ListAllCharactersServerStream(google.protobuf.Empty) returns (stream CharactersResponse);
+  rpc ListByPageClientStream(stream PageRequest) returns (CharactersResponse);
 }
 
 message CharactersResponse {
-  repeated Character characters = 1;
+  int32 total = 1;
+  repeated Character characters = 2;
 }
 
 message Character {
   string name = 1;
   string species = 2;
+}
+
+message PageRequest {
+  int32 page = 1;
 }

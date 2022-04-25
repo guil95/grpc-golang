@@ -35,6 +35,7 @@ func (uc *UseCase) FindAllCharacters(ctx context.Context) ([]Character, error) {
 			}
 
 			if c[0].Name != "" {
+				fmt.Println(fmt.Sprintf("processing page %d", page))
 				characters = append(characters, c...)
 			}
 			wg.Done()

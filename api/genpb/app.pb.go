@@ -30,7 +30,8 @@ type CharactersResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Characters []*Character `protobuf:"bytes,1,rep,name=characters,proto3" json:"characters,omitempty"`
+	Total      int32        `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	Characters []*Character `protobuf:"bytes,2,rep,name=characters,proto3" json:"characters,omitempty"`
 }
 
 func (x *CharactersResponse) Reset() {
@@ -63,6 +64,13 @@ func (x *CharactersResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use CharactersResponse.ProtoReflect.Descriptor instead.
 func (*CharactersResponse) Descriptor() ([]byte, []int) {
 	return file_app_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CharactersResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
 }
 
 func (x *CharactersResponse) GetCharacters() []*Character {
@@ -127,35 +135,92 @@ func (x *Character) GetSpecies() string {
 	return ""
 }
 
+type PageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Page int32 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+}
+
+func (x *PageRequest) Reset() {
+	*x = PageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_app_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PageRequest) ProtoMessage() {}
+
+func (x *PageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_app_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PageRequest.ProtoReflect.Descriptor instead.
+func (*PageRequest) Descriptor() ([]byte, []int) {
+	return file_app_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *PageRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
 var File_app_proto protoreflect.FileDescriptor
 
 var file_app_proto_rawDesc = []byte{
 	0x0a, 0x09, 0x61, 0x70, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x61, 0x70, 0x69,
 	0x2e, 0x72, 0x69, 0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74, 0x79, 0x1a, 0x1b, 0x67, 0x6f, 0x6f, 0x67,
 	0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x65, 0x6d, 0x70, 0x74,
-	0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x4e, 0x0a, 0x12, 0x43, 0x68, 0x61, 0x72, 0x61,
-	0x63, 0x74, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a,
-	0x0a, 0x63, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x18, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x72, 0x69, 0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74,
-	0x79, 0x2e, 0x43, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x52, 0x0a, 0x63, 0x68, 0x61,
-	0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x73, 0x22, 0x39, 0x0a, 0x09, 0x43, 0x68, 0x61, 0x72, 0x61,
-	0x63, 0x74, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x70, 0x65, 0x63,
-	0x69, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x73, 0x70, 0x65, 0x63, 0x69,
-	0x65, 0x73, 0x32, 0xba, 0x01, 0x0a, 0x10, 0x52, 0x69, 0x63, 0x6b, 0x4d, 0x6f, 0x72, 0x74, 0x79,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4e, 0x0a, 0x11, 0x4c, 0x69, 0x73, 0x74, 0x41,
-	0x6c, 0x6c, 0x43, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x73, 0x12, 0x16, 0x2e, 0x67,
-	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45,
-	0x6d, 0x70, 0x74, 0x79, 0x1a, 0x21, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x72, 0x69, 0x63, 0x6b, 0x6d,
+	0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x64, 0x0a, 0x12, 0x43, 0x68, 0x61, 0x72, 0x61,
+	0x63, 0x74, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a,
+	0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x12, 0x38, 0x0a, 0x0a, 0x63, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72,
+	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x72, 0x69,
+	0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74, 0x79, 0x2e, 0x43, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65,
+	0x72, 0x52, 0x0a, 0x63, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x73, 0x22, 0x39, 0x0a,
+	0x09, 0x43, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x18,
+	0x0a, 0x07, 0x73, 0x70, 0x65, 0x63, 0x69, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x73, 0x70, 0x65, 0x63, 0x69, 0x65, 0x73, 0x22, 0x21, 0x0a, 0x0b, 0x50, 0x61, 0x67, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x32, 0x9b, 0x02, 0x0a, 0x10,
+	0x52, 0x69, 0x63, 0x6b, 0x4d, 0x6f, 0x72, 0x74, 0x79, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x12, 0x4e, 0x0a, 0x11, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x72, 0x61,
+	0x63, 0x74, 0x65, 0x72, 0x73, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x21, 0x2e,
+	0x61, 0x70, 0x69, 0x2e, 0x72, 0x69, 0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74, 0x79, 0x2e, 0x43, 0x68,
+	0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x5c, 0x0a, 0x1d, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x6c, 0x6c, 0x43, 0x68, 0x61, 0x72, 0x61,
+	0x63, 0x74, 0x65, 0x72, 0x73, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x21, 0x2e, 0x61, 0x70, 0x69, 0x2e,
+	0x72, 0x69, 0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74, 0x79, 0x2e, 0x43, 0x68, 0x61, 0x72, 0x61, 0x63,
+	0x74, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x12, 0x59,
+	0x0a, 0x16, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x50, 0x61, 0x67, 0x65, 0x43, 0x6c, 0x69, 0x65,
+	0x6e, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x1a, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x72,
+	0x69, 0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74, 0x79, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x72, 0x69, 0x63, 0x6b, 0x6d,
 	0x6f, 0x72, 0x74, 0x79, 0x2e, 0x43, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x41,
-	0x6c, 0x6c, 0x43, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x73, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x21, 0x2e, 0x61, 0x70, 0x69,
-	0x2e, 0x72, 0x69, 0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74, 0x79, 0x2e, 0x43, 0x68, 0x61, 0x72, 0x61,
-	0x63, 0x74, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x42,
-	0x0f, 0x5a, 0x0d, 0x61, 0x70, 0x69, 0x2f, 0x72, 0x69, 0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74, 0x79,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x42, 0x0f, 0x5a, 0x0d, 0x61, 0x70, 0x69,
+	0x2f, 0x72, 0x69, 0x63, 0x6b, 0x6d, 0x6f, 0x72, 0x74, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -170,20 +235,23 @@ func file_app_proto_rawDescGZIP() []byte {
 	return file_app_proto_rawDescData
 }
 
-var file_app_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_app_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_app_proto_goTypes = []interface{}{
 	(*CharactersResponse)(nil), // 0: api.rickmorty.CharactersResponse
 	(*Character)(nil),          // 1: api.rickmorty.Character
-	(*emptypb.Empty)(nil),      // 2: google.protobuf.Empty
+	(*PageRequest)(nil),        // 2: api.rickmorty.PageRequest
+	(*emptypb.Empty)(nil),      // 3: google.protobuf.Empty
 }
 var file_app_proto_depIdxs = []int32{
 	1, // 0: api.rickmorty.CharactersResponse.characters:type_name -> api.rickmorty.Character
-	2, // 1: api.rickmorty.RickMortyService.ListAllCharacters:input_type -> google.protobuf.Empty
-	2, // 2: api.rickmorty.RickMortyService.ListAllCharactersStream:input_type -> google.protobuf.Empty
-	0, // 3: api.rickmorty.RickMortyService.ListAllCharacters:output_type -> api.rickmorty.CharactersResponse
-	0, // 4: api.rickmorty.RickMortyService.ListAllCharactersStream:output_type -> api.rickmorty.CharactersResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
+	3, // 1: api.rickmorty.RickMortyService.ListAllCharacters:input_type -> google.protobuf.Empty
+	3, // 2: api.rickmorty.RickMortyService.ListAllCharactersServerStream:input_type -> google.protobuf.Empty
+	2, // 3: api.rickmorty.RickMortyService.ListByPageClientStream:input_type -> api.rickmorty.PageRequest
+	0, // 4: api.rickmorty.RickMortyService.ListAllCharacters:output_type -> api.rickmorty.CharactersResponse
+	0, // 5: api.rickmorty.RickMortyService.ListAllCharactersServerStream:output_type -> api.rickmorty.CharactersResponse
+	0, // 6: api.rickmorty.RickMortyService.ListByPageClientStream:output_type -> api.rickmorty.CharactersResponse
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -219,6 +287,18 @@ func file_app_proto_init() {
 				return nil
 			}
 		}
+		file_app_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -226,7 +306,7 @@ func file_app_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_app_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -253,7 +333,8 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type RickMortyServiceClient interface {
 	ListAllCharacters(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CharactersResponse, error)
-	ListAllCharactersStream(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (RickMortyService_ListAllCharactersStreamClient, error)
+	ListAllCharactersServerStream(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (RickMortyService_ListAllCharactersServerStreamClient, error)
+	ListByPageClientStream(ctx context.Context, opts ...grpc.CallOption) (RickMortyService_ListByPageClientStreamClient, error)
 }
 
 type rickMortyServiceClient struct {
@@ -273,12 +354,12 @@ func (c *rickMortyServiceClient) ListAllCharacters(ctx context.Context, in *empt
 	return out, nil
 }
 
-func (c *rickMortyServiceClient) ListAllCharactersStream(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (RickMortyService_ListAllCharactersStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_RickMortyService_serviceDesc.Streams[0], "/api.rickmorty.RickMortyService/ListAllCharactersStream", opts...)
+func (c *rickMortyServiceClient) ListAllCharactersServerStream(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (RickMortyService_ListAllCharactersServerStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_RickMortyService_serviceDesc.Streams[0], "/api.rickmorty.RickMortyService/ListAllCharactersServerStream", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &rickMortyServiceListAllCharactersStreamClient{stream}
+	x := &rickMortyServiceListAllCharactersServerStreamClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -288,16 +369,50 @@ func (c *rickMortyServiceClient) ListAllCharactersStream(ctx context.Context, in
 	return x, nil
 }
 
-type RickMortyService_ListAllCharactersStreamClient interface {
+type RickMortyService_ListAllCharactersServerStreamClient interface {
 	Recv() (*CharactersResponse, error)
 	grpc.ClientStream
 }
 
-type rickMortyServiceListAllCharactersStreamClient struct {
+type rickMortyServiceListAllCharactersServerStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *rickMortyServiceListAllCharactersStreamClient) Recv() (*CharactersResponse, error) {
+func (x *rickMortyServiceListAllCharactersServerStreamClient) Recv() (*CharactersResponse, error) {
+	m := new(CharactersResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *rickMortyServiceClient) ListByPageClientStream(ctx context.Context, opts ...grpc.CallOption) (RickMortyService_ListByPageClientStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_RickMortyService_serviceDesc.Streams[1], "/api.rickmorty.RickMortyService/ListByPageClientStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &rickMortyServiceListByPageClientStreamClient{stream}
+	return x, nil
+}
+
+type RickMortyService_ListByPageClientStreamClient interface {
+	Send(*PageRequest) error
+	CloseAndRecv() (*CharactersResponse, error)
+	grpc.ClientStream
+}
+
+type rickMortyServiceListByPageClientStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *rickMortyServiceListByPageClientStreamClient) Send(m *PageRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *rickMortyServiceListByPageClientStreamClient) CloseAndRecv() (*CharactersResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
 	m := new(CharactersResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -308,7 +423,8 @@ func (x *rickMortyServiceListAllCharactersStreamClient) Recv() (*CharactersRespo
 // RickMortyServiceServer is the server API for RickMortyService service.
 type RickMortyServiceServer interface {
 	ListAllCharacters(context.Context, *emptypb.Empty) (*CharactersResponse, error)
-	ListAllCharactersStream(*emptypb.Empty, RickMortyService_ListAllCharactersStreamServer) error
+	ListAllCharactersServerStream(*emptypb.Empty, RickMortyService_ListAllCharactersServerStreamServer) error
+	ListByPageClientStream(RickMortyService_ListByPageClientStreamServer) error
 }
 
 // UnimplementedRickMortyServiceServer can be embedded to have forward compatible implementations.
@@ -318,8 +434,11 @@ type UnimplementedRickMortyServiceServer struct {
 func (*UnimplementedRickMortyServiceServer) ListAllCharacters(context.Context, *emptypb.Empty) (*CharactersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllCharacters not implemented")
 }
-func (*UnimplementedRickMortyServiceServer) ListAllCharactersStream(*emptypb.Empty, RickMortyService_ListAllCharactersStreamServer) error {
-	return status.Errorf(codes.Unimplemented, "method ListAllCharactersStream not implemented")
+func (*UnimplementedRickMortyServiceServer) ListAllCharactersServerStream(*emptypb.Empty, RickMortyService_ListAllCharactersServerStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListAllCharactersServerStream not implemented")
+}
+func (*UnimplementedRickMortyServiceServer) ListByPageClientStream(RickMortyService_ListByPageClientStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method ListByPageClientStream not implemented")
 }
 
 func RegisterRickMortyServiceServer(s *grpc.Server, srv RickMortyServiceServer) {
@@ -344,25 +463,51 @@ func _RickMortyService_ListAllCharacters_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RickMortyService_ListAllCharactersStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _RickMortyService_ListAllCharactersServerStream_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(emptypb.Empty)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(RickMortyServiceServer).ListAllCharactersStream(m, &rickMortyServiceListAllCharactersStreamServer{stream})
+	return srv.(RickMortyServiceServer).ListAllCharactersServerStream(m, &rickMortyServiceListAllCharactersServerStreamServer{stream})
 }
 
-type RickMortyService_ListAllCharactersStreamServer interface {
+type RickMortyService_ListAllCharactersServerStreamServer interface {
 	Send(*CharactersResponse) error
 	grpc.ServerStream
 }
 
-type rickMortyServiceListAllCharactersStreamServer struct {
+type rickMortyServiceListAllCharactersServerStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *rickMortyServiceListAllCharactersStreamServer) Send(m *CharactersResponse) error {
+func (x *rickMortyServiceListAllCharactersServerStreamServer) Send(m *CharactersResponse) error {
 	return x.ServerStream.SendMsg(m)
+}
+
+func _RickMortyService_ListByPageClientStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RickMortyServiceServer).ListByPageClientStream(&rickMortyServiceListByPageClientStreamServer{stream})
+}
+
+type RickMortyService_ListByPageClientStreamServer interface {
+	SendAndClose(*CharactersResponse) error
+	Recv() (*PageRequest, error)
+	grpc.ServerStream
+}
+
+type rickMortyServiceListByPageClientStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *rickMortyServiceListByPageClientStreamServer) SendAndClose(m *CharactersResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *rickMortyServiceListByPageClientStreamServer) Recv() (*PageRequest, error) {
+	m := new(PageRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 var _RickMortyService_serviceDesc = grpc.ServiceDesc{
@@ -376,9 +521,14 @@ var _RickMortyService_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "ListAllCharactersStream",
-			Handler:       _RickMortyService_ListAllCharactersStream_Handler,
+			StreamName:    "ListAllCharactersServerStream",
+			Handler:       _RickMortyService_ListAllCharactersServerStream_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "ListByPageClientStream",
+			Handler:       _RickMortyService_ListByPageClientStream_Handler,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "app.proto",
