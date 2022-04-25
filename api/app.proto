@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "api/rickmorty";
+
+package api.rickmorty;
+
+import "google/protobuf/empty.proto";
+
+service RickMortyService {
+  rpc ListAllCharacters(google.protobuf.Empty) returns (CharactersResponse);
+  rpc ListAllCharactersStream(google.protobuf.Empty) returns (stream CharactersResponse);
+}
+
+message CharactersResponse {
+  repeated Character characters = 1;
+}
+
+message Character {
+  string name = 1;
+  string species = 2;
+}
