@@ -1,13 +1,13 @@
 package grpc
 
 import (
+	"github.com/guil95/grpc-golang/internal/domain"
+	"github.com/guil95/grpc-golang/internal/infra/grpc/server"
+	"github.com/guil95/grpc-golang/internal/infra/http/clients"
 	"log"
 	"net"
 
 	pb "github.com/guil95/grpc-golang/api/genpb"
-	"github.com/guil95/grpc-golang/domain"
-	"github.com/guil95/grpc-golang/infra/grpc/server"
-	"github.com/guil95/grpc-golang/infra/http/clients"
 	"google.golang.org/grpc"
 )
 

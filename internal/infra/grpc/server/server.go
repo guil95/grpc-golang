@@ -2,17 +2,17 @@ package server
 
 import (
 	"context"
+	domain2 "github.com/guil95/grpc-golang/internal/domain"
 
 	pb "github.com/guil95/grpc-golang/api/genpb"
-	"github.com/guil95/grpc-golang/domain"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 type server struct {
-	uc *domain.UseCase
+	uc *domain2.UseCase
 }
 
-func NewServer(uc *domain.UseCase) *server {
+func NewServer(uc *domain2.UseCase) *server {
 	return &server{
 		uc: uc,
 	}
@@ -50,7 +50,7 @@ func (s *server) ListAllCharactersStream(req *emptypb.Empty, srv pb.RickMortySer
 	return nil
 }
 
-func characterListToResponse(characters []domain.Character) *pb.CharactersResponse {
+func characterListToResponse(characters []domain2.Character) *pb.CharactersResponse {
 	var charactersResponse []*pb.Character
 	for _, c := range characters {
 		charactersResponse = append(charactersResponse, &pb.Character{Name: c.Name, Species: c.Species})

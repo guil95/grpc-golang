@@ -4,10 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/guil95/grpc-golang/internal/domain"
 	"io"
 	"net/http"
-
-	"github.com/guil95/grpc-golang/domain"
 )
 
 type rickMortyClient struct{}
