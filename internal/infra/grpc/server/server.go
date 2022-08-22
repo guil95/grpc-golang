@@ -14,7 +14,7 @@ type server struct {
 	uc *domain.UseCase
 }
 
-func NewServer(uc *domain.UseCase) *server {
+func NewServer(uc *domain.UseCase) pb.RickMortyServiceServer {
 	return &server{
 		uc: uc,
 	}
