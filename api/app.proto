@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-option go_package = "api/rickmorty";
+//protoc --go_out=./api/genpb api/app.proto
+//protoc --go-grpc_out=require_unimplemented_servers=false:./api/genpb api/app.proto
+option go_package = "./rickmorty";
 
-package api.rickmorty;
+package rickmorty;
 
 import "google/protobuf/empty.proto";
 

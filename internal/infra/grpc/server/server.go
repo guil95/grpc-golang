@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	pb "github.com/guil95/grpc-golang/api/genpb"
+	pb "github.com/guil95/grpc-golang/api/genpb/rickmorty"
 	"github.com/guil95/grpc-golang/internal/domain"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"io"
@@ -88,6 +88,6 @@ func characterListToResponse(characters []domain.Character) *pb.CharactersRespon
 
 	return &pb.CharactersResponse{
 		Characters: charactersResponse,
-		Total: int32(len(charactersResponse)),
+		Total:      int32(len(charactersResponse)),
 	}
 }
