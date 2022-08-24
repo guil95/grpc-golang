@@ -11,10 +11,10 @@ import (
 	"google.golang.org/grpc"
 )
 
-func RunGrpcServer() {
+func RunGrpcServer(quit chan error) {
 	lis, err := net.Listen("tcp", "0.0.0.0:50002")
 	if err != nil {
-		log.Fatal(err)
+		quit <- err
 	}
 	client := clients.NewRickMortyClient()
 	uc := domain.NewUseCase(client)
@@ -24,6 +24,6 @@ func RunGrpcServer() {
 
 	log.Println("Server running on port 50002")
 	if err := grpcServer.Serve(lis); err != nil {
-		log.Fatal(err)
+		quit <- err
 	}
 }
