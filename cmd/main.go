@@ -1,7 +1,14 @@
 package main
 
-import "github.com/guil95/grpc-golang/pkg/grpc"
+import (
+	"github.com/guil95/grpc-golang/cmd/commands"
+	"github.com/spf13/cobra"
+)
 
 func main() {
-	grpc.RunGrpcServer()
+	rootCmd := &cobra.Command{Use: "bank-statement"}
+
+	rootCmd.AddCommand(commands.NewGrpcCommand())
+	rootCmd.AddCommand(commands.NewHTTPCommand())
+	_ = rootCmd.Execute()
 }
