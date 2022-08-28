@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	rootCmd := &cobra.Command{Use: "bank-statement"}
+	rootCmd := &cobra.Command{Use: "grpc-golang"}
 
 	rootCmd.AddCommand(commands.NewGrpcCommand())
 	rootCmd.AddCommand(commands.NewHTTPCommand())
